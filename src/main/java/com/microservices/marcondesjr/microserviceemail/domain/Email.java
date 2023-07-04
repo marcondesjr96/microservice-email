@@ -3,9 +3,9 @@ package com.microservices.marcondesjr.microserviceemail.domain;
 import com.microservices.marcondesjr.microserviceemail.enums.StatusEmail;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 public class Email {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long emailId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID emailId;
     private String ownerRef;
     private String emailFrom;
     private String emailTo;
