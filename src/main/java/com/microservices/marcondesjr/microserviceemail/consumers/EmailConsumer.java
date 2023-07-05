@@ -1,7 +1,7 @@
 package com.microservices.marcondesjr.microserviceemail.consumers;
 
 import com.microservices.marcondesjr.microserviceemail.domain.Email;
-import com.microservices.marcondesjr.microserviceemail.dtos.EmailDto;
+import com.microservices.marcondesjr.microserviceemail.dtos.EmailRequestDto;
 import com.microservices.marcondesjr.microserviceemail.service.EmailService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.BeanUtils;
@@ -16,7 +16,7 @@ public class EmailConsumer {
     EmailService emailService;
 
     @RabbitListener(queues = "${spring.rabbitmq.queue}")
-    public void listen (@Payload EmailDto emailDto){
+    public void listen (@Payload EmailRequestDto emailDto){
         Email email = new Email();
         BeanUtils.copyProperties(emailDto, email);
         emailService.sendEmail(email);

@@ -1,6 +1,7 @@
 package com.microservices.marcondesjr.microserviceemail.service;
 
 import com.microservices.marcondesjr.microserviceemail.domain.Email;
+import com.microservices.marcondesjr.microserviceemail.dtos.EmailResponseDto;
 import com.microservices.marcondesjr.microserviceemail.enums.StatusEmail;
 import com.microservices.marcondesjr.microserviceemail.repository.EmailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class EmailService {
     private JavaMailSender emailSender;
 
 
-    public Email sendEmail(Email email) {
+    public EmailResponseDto sendEmail(Email email) {
         email.setSendDateEmail(LocalDateTime.now());
         try{
             SimpleMailMessage message = new SimpleMailMessage();
@@ -38,7 +39,8 @@ public class EmailService {
             ex.getMessage();
 
         }finally {
-            return emailRepository.save(email);
+            emailRepository.save(email);
+            return EmailResponseDto.toResponseDto(email);
         }
     }
 }

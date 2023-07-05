@@ -2,10 +2,14 @@ package com.microservices.marcondesjr.microserviceemail.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
+import lombok.*;
 
-@Data
-public class EmailDto {
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class EmailRequestDto {
 
     @NotBlank
     private String ownerRef;
